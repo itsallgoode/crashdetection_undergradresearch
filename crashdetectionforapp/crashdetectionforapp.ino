@@ -1,3 +1,5 @@
+// This is for an ESP32 paired with an MPU6050 Accelerometer
+
 #include <Wire.h>
 #include <MPU6050.h>
 #include <BLEDevice.h>
