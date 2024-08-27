@@ -1,7 +1,7 @@
 import CoreBluetooth
 import Foundation
 
-// Correctly defined UUIDs as CBUUID instances
+
 let serviceUUID = CBUUID(string: "12345678-1234-5678-1234-56789abcdef0")
 let characteristicUUID = CBUUID(string: "abcdef12-3456-7890-abcd-ef1234567890")
 
@@ -22,7 +22,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == .poweredOn {
             isBluetoothEnabled = true
-            // Correctly use the serviceUUID in the scanForPeripherals call
+
             centralManager.scanForPeripherals(withServices: [serviceUUID], options: nil)
         } else {
             isBluetoothEnabled = false
@@ -37,14 +37,14 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
 
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         peripheral.delegate = self
-        // Correctly use the serviceUUID in the discoverServices call
+
         peripheral.discoverServices([serviceUUID])
     }
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard let services = peripheral.services else { return }
         for service in services {
-            // Discover characteristics without filtering by UUID, so no correction needed here
+
             peripheral.discoverCharacteristics(nil, for: service)
         }
     }
