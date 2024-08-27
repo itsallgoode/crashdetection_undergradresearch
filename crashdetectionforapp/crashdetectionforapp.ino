@@ -88,5 +88,5 @@ void loop() {
         pCharacteristic->notify();
     }
 
-    delay(100); // Delay for demonstration purposes. Adjust as needed for your application.
+    delay(100); 
 }
