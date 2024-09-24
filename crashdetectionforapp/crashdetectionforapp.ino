@@ -68,13 +68,11 @@ void loop() {
     float rawAngleX = atan2(ayg, azg) * 180.0 / PI;
     float rawAngleY = atan2(axg, azg) * 180.0 / PI;
     
-    // Calibrate and normalize angles based on the original code provided
     float calibratedAngleX = calibrateAngle(rawAngleX);
     float calibratedAngleY = calibrateAngle(rawAngleY);
     float finalAngleX = normalizeAngle(calibratedAngleX);
     float finalAngleY = normalizeAngle(calibratedAngleY);
 
-    // Crash detection logic based on original thresholds
     bool crashDetected = (finalAngleX < crashMinThresholdX || finalAngleX > crashMaxThresholdX || 
                           finalAngleY < crashMinThresholdY || finalAngleY > crashMaxThresholdY);
 
